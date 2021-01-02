@@ -13,6 +13,7 @@ else:
     <meta charset="UTF-8">
     <title>Main</title>
     <script src="main.js"></script>
+    <script src="script.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     </head>
 
