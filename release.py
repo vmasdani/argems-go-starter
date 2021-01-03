@@ -35,7 +35,7 @@ index_html_contents = """<html>
 steps = [
     ("mkdir -p dist/frontend", "."),
     ("go build", "."),
-    ("cp argems-go-starter dist", "."),
+    ("cp argems-go-starter .env dist", "."),
     ("./build.sh", "./frontend"),
     ("cp dist/* ../dist/frontend", "./frontend"),
 ]
