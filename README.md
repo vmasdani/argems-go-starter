@@ -24,8 +24,9 @@ cd frontend
 ```
 
 # Build
-To build, you need Python 3, and also [Node.JS](https://nodejs.org/en/download/) for minification.
+To build, you need Python 3, and also [Node.JS](https://nodejs.org/en/download/) for minification.  
+Edit your app URL in `release.json`.
 ```
 sudo npm i -g uglify-js
-./release.py [your deployment URL, i.e. https://myapp.com, http://localhost:8080, etc]
+./release.py
 ```

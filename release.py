@@ -2,13 +2,17 @@
 
 import subprocess
 import sys
+import json
 
-if len(sys.argv) <= 1:
-    print("Usage: ./release.py [base url]")
-else:
-    base_url = sys.argv[1]
+# Read release.json
+release = open('release.json')
+release_contents = json.loads(release.read())
 
-    index_html_contents = """<html>
+release.close()
+
+base_url = release_contents["base_url"]
+
+index_html_contents = """<html>
     <head>
     <meta charset="UTF-8">
     <title>Main</title>
@@ -28,19 +32,19 @@ else:
     </body>
 </html>""".format(base_url)
 
-    steps = [
-        ("mkdir -p dist/frontend", "."),
-        ("go build", "."),
-        ("cp argems-go-starter dist", "."),
-        ("./build.sh", "./frontend"),
-        ("cp dist/* ../dist/frontend", "./frontend"),
-    ]
+steps = [
+    ("mkdir -p dist/frontend", "."),
+    ("go build", "."),
+    ("cp argems-go-starter dist", "."),
+    ("./build.sh", "./frontend"),
+    ("cp dist/* ../dist/frontend", "./frontend"),
+]
 
-    for (cmd, cwd) in steps:
-        subprocess.run(cmd, shell=True, cwd=cwd)
+for (cmd, cwd) in steps:
+    subprocess.run(cmd, shell=True, cwd=cwd)
 
-    f = open('./dist/frontend/index.html', 'w+')
-    f.write(index_html_contents)
-    f.close()
+f = open('./dist/frontend/index.html', 'w+')
+f.write(index_html_contents)
+f.close()
 
-    print("\nRelease success! files are located in ./dist")
+print("\nRelease success! files are located in ./dist")
